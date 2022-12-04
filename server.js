@@ -1,13 +1,19 @@
-const http = require('http');
+//import thư viện express
+const express = require('express');
 
-const server = http.createServer((req, res) => {
-    console.log('run request ...')
-    res.setHeader('Content-Type', 'text/html');
-    res.write('<h3>Hello world! </h3>');
-    res.write('<h2>from dieutrinh & NAIBEE </h2>');
-    res.end();
+const app = express()
+const port = 8080
+
+//khai báo route (điều hướng website)
+app.get('/', (req, res) => {
+  res.send('Hello World with dieutrinh!')
 })
 
-server.listen(3000, 'localhost', () => {
-    console.log('Node.JS server is running on port: 3000');
+app.get('/about', (req, res) => {
+    res.send('I am Naibee!')
+  })
+
+//lắng nghe cổng thực thi
+app.listen(port, () => {
+  console.log(`Example app listening on port ${port}`)
 })
