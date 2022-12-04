@@ -1,12 +1,16 @@
 //import thư viện express
-const express = require('express');
+// const express = require('express');
+import express from "express";
+import configViewEngine from "./configs/viewEngine";
 
 const app = express()
 const port = 8080
 
+configViewEngine(app);
+
 //khai báo route (điều hướng website)
 app.get('/', (req, res) => {
-  res.send('Hello World with dieutrinh!')
+  res.render('test/index.ejs')
 })
 
 app.get('/about', (req, res) => {
