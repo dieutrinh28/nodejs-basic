@@ -11,9 +11,26 @@ let getDetailPage = async(req, res) => {
 
     let userId = req.params.id;
     let [user] = await pool.execute(`SELECT * FROM users where id = ?`, [userId]);
-    return res.send(JSON.stringify[user])
+   
+    return res.send(JSON.stringify(user))
+}
+
+let createNewUser = async(req, res) => {
+    console.log('check req: ', req.body);
+
+    // cách dùng destructuring:
+    let {firstName, lastName, email, address} = req.body;
+   
+    // let firstName = req.body.firstName;
+    // let lastName = req.body.lastName;
+    // let email = req.body.email;
+    // let address = req.body.address;
+
+    await pool.execute('INSERT INTO users (firstName, lastName, email, address) VALUES (?,?,?,?)', [firstName, lastName, email, address]); 
+    
+    return res.redirect('/');
 }
 
 module.exports = {
-    getHomepage, getDetailPage
+    getHomepage, getDetailPage, createNewUser
 }
