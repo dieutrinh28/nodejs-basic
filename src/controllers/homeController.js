@@ -8,7 +8,7 @@ let getHomepage = async(req, res) => {
 }
 
 let getDetailPage = async(req, res) => {
-
+    //req.params.id: lấy user động theo id
     let userId = req.params.id;
     let [user] = await pool.execute(`SELECT * FROM users where id = ?`, [userId]);
    
@@ -31,6 +31,12 @@ let createNewUser = async(req, res) => {
     return res.redirect('/');
 }
 
+let deleteUser = async(req, res) => {
+    let userId = req.body.userId
+    await pool.execute('DELETE FROM users WHERE id = ?', [userId])
+    return res.redirect('/');
+}
+
 module.exports = {
-    getHomepage, getDetailPage, createNewUser
+    getHomepage, getDetailPage, createNewUser, deleteUser
 }
