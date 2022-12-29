@@ -24,7 +24,7 @@ configViewEngine(app);
 initWebRoute(app);
 
 //init api route
-initAPIRoute(app);
+initAPIRoute(app); 
 
 //lắng nghe cổng thực thi
 app.listen(port, () => {
